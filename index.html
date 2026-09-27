@@ -45,6 +45,7 @@
   --logo-teal: #17A398;
 }
 *{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
 html,body{ margin:0; padding:0; }
 body{
   background: var(--bg);
@@ -171,8 +172,9 @@ nav a:hover{ color: var(--text); border-bottom-color: var(--accent); }
   border: 1px solid var(--line-soft);
   background: radial-gradient(circle at 50% 45%, var(--panel) 0%, var(--panel-2) 70%);
   overflow: hidden;
+  touch-action: none;
 }
-.hero-visual canvas{ width: 100% !important; height: 100% !important; display: block; }
+.hero-visual canvas{ width: 100% !important; height: 100% !important; display: block; touch-action: none; }
 .hero-visual .hint{
   position: absolute;
   bottom: 10px;
@@ -324,6 +326,86 @@ section{ padding: 56px 0; border-top: 1px solid var(--line-soft); }
 }
 .case-cta{ margin-top: 26px; }
 
+/* ---------- contact ---------- */
+.contact-shell{
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  padding: 40px;
+}
+.contact-head p{
+  color: var(--text-dim);
+  font-size: 15px;
+  margin: 0 0 4px;
+  max-width: 52ch;
+}
+.contact-head .alt-email{
+  font-size: 13.5px;
+  color: var(--text-dim);
+  margin: 0 0 28px;
+}
+.contact-head .alt-email a{
+  color: var(--accent-2);
+  text-decoration: none;
+}
+.contact-head .alt-email a:hover{ text-decoration: underline; }
+
+.field-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.field{ display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.field.full{ grid-column: 1 / -1; }
+.field label{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}
+.field label .req{ color: var(--accent); }
+.field input,
+.field select,
+.field textarea{
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14.5px;
+  padding: 12px 14px;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  outline: none;
+  border-color: var(--accent-2);
+}
+.field textarea{ resize: vertical; min-height: 100px; }
+.field select{ appearance: none; }
+
+.form-submit-row{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.form-submit-row .btn{
+  border: none;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.form-note{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+.form-note.error{ color: #ff8b7a; }
+.form-note.success{ color: var(--accent-2); }
+
+@media (max-width: 640px){
+  .field-grid{ grid-template-columns: 1fr; }
+  .contact-shell{ padding: 26px; }
+}
+
 /* ---------- footer ---------- */
 footer{ padding: 54px 0 60px; border-top: 1px solid var(--line-soft); }
 footer h2{ font-size: 24px; margin: 0 0 14px; max-width: 22ch; }
@@ -371,6 +453,7 @@ footer p{ color: var(--text-dim); margin: 0 0 26px; max-width: 48ch; }
     </div>
     <nav>
       <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -384,7 +467,7 @@ footer p{ color: var(--text-dim); margin: 0 0 26px; max-width: 48ch; }
       <p>Coredge is a small web development practice run by Folahan Bank-Olemoh. It takes a business from a blank page to a live, working site: design, build, and the systems that run behind it. Client work ranges from small booking sites to full-scale, multi-page platforms.</p>
       <p class="sub">Interactive, animated, and <span class="accent-2">3D web experiences</span> available for brands that want their site to do more than sit there. (That shape on the right is one, live, right now.)</p>
       <div class="cta-row">
-        <a class="btn" href="mailto:folahan7@gmail.com">Email folahan7@gmail.com</a>
+        <a class="btn" href="#contact">Get in touch</a>
         <div class="status"><span class="dot"></span>Currently taking new clients</div>
       </div>
     </div>
@@ -485,6 +568,61 @@ footer p{ color: var(--text-dim); margin: 0 0 26px; max-width: 48ch; }
     </div>
   </section>
 
+  <section id="contact">
+    <div class="section-head">
+      <h2>Let's work together</h2>
+      <div class="tag mono">get in touch</div>
+    </div>
+    <div class="contact-shell">
+      <div class="contact-head">
+        <p>Tell me about your project and I'll get back to you shortly.</p>
+        <p class="alt-email">Or email directly at <a href="mailto:folahan7@gmail.com">folahan7@gmail.com</a>.</p>
+      </div>
+      <form id="contact-form" action="https://formspree.io/f/xgavnqjj" method="POST">
+        <input type="hidden" name="_subject" value="New project inquiry — Coredge site">
+        <div class="field-grid">
+          <div class="field">
+            <label for="cf-name">What's your name? <span class="req">*</span></label>
+            <input id="cf-name" type="text" name="name" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">What's your email address? <span class="req">*</span></label>
+            <input id="cf-email" type="email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="cf-phone">What phone number should we reach you on?</label>
+            <input id="cf-phone" type="tel" name="phone">
+          </div>
+          <div class="field">
+            <label for="cf-business">What's the name of your business?</label>
+            <input id="cf-business" type="text" name="business">
+          </div>
+          <div class="field full">
+            <label for="cf-help">What do you need help with? <span class="req">*</span></label>
+            <select id="cf-help" name="help_type" required>
+              <option value="" disabled selected>Select one</option>
+              <option>Web Design</option>
+              <option>Web Development</option>
+              <option>Interactive / 3D / Animated Site</option>
+              <option>E-commerce</option>
+              <option>Web Portal</option>
+              <option>AI Web Integration</option>
+              <option>Something Else</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="cf-notes">Any other information you'd like us to know?</label>
+            <textarea id="cf-notes" name="notes"></textarea>
+          </div>
+        </div>
+        <div class="form-submit-row">
+          <button class="btn" type="submit" id="cf-submit">Send it over</button>
+          <div class="form-note" id="cf-note"></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
   <footer>
     <h2>Have a site that needs building?</h2>
     <p>From a small business that needs its first real site to a brand that wants an interactive, animated experience, Coredge is currently taking on new client work.</p>
@@ -552,15 +690,19 @@ footer p{ color: var(--text-dim); margin: 0 0 26px; max-width: 48ch; }
 
   mount.addEventListener('pointerdown', function(e){
     dragging = true; lastX = e.clientX; lastY = e.clientY;
+    mount.setPointerCapture && mount.setPointerCapture(e.pointerId);
+    e.preventDefault();
   });
   window.addEventListener('pointerup', function(){ dragging = false; });
+  window.addEventListener('pointercancel', function(){ dragging = false; });
   window.addEventListener('pointermove', function(e){
     if(!dragging) return;
+    e.preventDefault();
     var dx = e.clientX - lastX, dy = e.clientY - lastY;
     lastX = e.clientX; lastY = e.clientY;
     rotY += dx * 0.008;
     rotX += dy * 0.008;
-  });
+  }, { passive: false });
 
   function animate(){
     requestAnimationFrame(animate);
@@ -575,6 +717,49 @@ footer p{ color: var(--text-dim); margin: 0 0 26px; max-width: 48ch; }
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var form = document.getElementById('contact-form');
+  var note = document.getElementById('cf-note');
+  var submitBtn = document.getElementById('cf-submit');
+  if(!form) return;
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    note.className = 'form-note';
+    note.textContent = '';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(response){
+      if(response.ok){
+        note.className = 'form-note success';
+        note.textContent = "Thanks, that's in. I'll get back to you shortly.";
+        form.reset();
+      } else {
+        response.json().then(function(data){
+          note.className = 'form-note error';
+          note.textContent = (data && data.errors) ? data.errors.map(function(err){ return err.message; }).join(', ') : 'Something went wrong. Try emailing directly instead.';
+        }).catch(function(){
+          note.className = 'form-note error';
+          note.textContent = 'Something went wrong. Try emailing directly instead.';
+        });
+      }
+    }).catch(function(){
+      note.className = 'form-note error';
+      note.textContent = 'Something went wrong. Try emailing directly instead.';
+    }).finally(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send it over';
+    });
   });
 })();
 </script>
