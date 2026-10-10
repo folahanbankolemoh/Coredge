@@ -240,6 +240,7 @@ section{ padding: 56px 0; border-top: 1px solid var(--line-soft); }
   background: var(--panel-2);
   padding: 36px;
 }
+.case + .case{ margin-top: 32px; }
 .case::before, .case::after,
 .case .crop-br, .case .crop-tr{
   content:"";
@@ -285,6 +286,12 @@ section{ padding: 56px 0; border-top: 1px solid var(--line-soft); }
   font-size: 14.5px;
   margin: 0 0 20px;
 }
+.case-col ul{
+  font-size: 14.5px;
+  margin: 0 0 20px;
+  padding-left: 18px;
+}
+.case-col ul li{ margin-bottom: 6px; }
 .stack-tags{ display:flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
 .stack-tags span{
   font-family: 'IBM Plex Mono', monospace;
@@ -299,6 +306,7 @@ section{ padding: 56px 0; border-top: 1px solid var(--line-soft); }
   background: var(--bg);
   padding: 16px;
 }
+.sitemap + .sitemap{ margin-top: 14px; }
 .sitemap .cap{
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11.5px;
@@ -324,7 +332,28 @@ section{ padding: 56px 0; border-top: 1px solid var(--line-soft); }
   color: var(--text-dim);
   margin-top: auto;
 }
-.case-cta{ margin-top: 26px; }
+.sm-page.hl{ border-color: var(--accent-2); }
+.sm-page.hl .b{ background: var(--accent-2); opacity: 0.5; }
+.sm-page.hl .label{ color: var(--accent-2); }
+
+/* attendance table mock */
+.att{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: var(--text-dim);
+}
+.att-row{
+  display: grid;
+  grid-template-columns: 1.3fr 1.5fr 0.6fr;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line-soft);
+  align-items: center;
+}
+.att-row.head{ color: var(--text); border-bottom-color: var(--line); }
+.att-row .b{ background: var(--line-soft); height: 6px; }
+.att-row .b.pts{ background: var(--accent-2); opacity: 0.5; width: 60%; }
+.case-cta{ margin-top: 26px; display: flex; gap: 14px; flex-wrap: wrap; }
 
 /* ---------- contact ---------- */
 .contact-shell{
@@ -512,8 +541,10 @@ footer p{ color: var(--text-dim); margin: 0 0 26px; max-width: 48ch; }
   <section id="work">
     <div class="section-head">
       <h2>Featured work</h2>
-      <div class="tag mono">client project</div>
+      <div class="tag mono">selected projects</div>
     </div>
+
+    <!-- Case 1: Styled by Pearll -->
     <div class="case">
       <div class="crop-tr"></div>
       <div class="crop-br"></div>
@@ -562,6 +593,92 @@ footer p{ color: var(--text-dim); margin: 0 0 26px; max-width: 48ch; }
           </div>
           <div class="case-cta">
             <a class="btn" href="https://styledbypearll.com" target="_blank" rel="noopener">View the live site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case 2: KSU NSBE (KSBE) -->
+    <div class="case">
+      <div class="crop-tr"></div>
+      <div class="crop-br"></div>
+      <div class="case-top">
+        <div>
+          <h3>Kennesaw Society of Black Engineers</h3>
+          <a class="client-url" href="https://ksunsbe.org" target="_blank" rel="noopener">ksunsbe.org ↗</a>
+        </div>
+        <div class="case-meta">
+          Chapter website<br>
+          Member points system<br>
+          Event check-in app
+        </div>
+      </div>
+      <div class="case-grid">
+        <div class="case-col">
+          <h4>the ask</h4>
+          <p>KSBE, the Kennesaw State chapter of the National Society of Black Engineers, needed one home for members, events, sponsors, and donations. The chapter also needed a fair way to track member involvement, since points decide who qualifies for chapter opportunities.</p>
+          <h4>the build</h4>
+          <p>A multi-page chapter site covering membership, events with a live calendar, a gallery, the e-board, an alumni network, and online donations. Behind the site sits a member points system:</p>
+          <ul>
+            <li>A Point Lookup page where any member checks their own total.</li>
+            <li>An event check-in app that logs attendance and awards points on the spot.</li>
+            <li>An admin dashboard with every member's total and a full attendance history: date and time, event, and points per check-in.</li>
+            <li>A metrics view so committees pull their own attendance reports.</li>
+          </ul>
+          <h4>stack</h4>
+          <div class="stack-tags">
+            <span>WordPress</span><span>Elementor</span><span>GiveWP</span><span>Replit</span><span>Google Calendar</span>
+          </div>
+        </div>
+        <div class="case-col">
+          <div class="sitemap">
+            <div class="cap">site structure: 8 pages</div>
+            <div class="sm-pages">
+              <div class="sm-page">
+                <div class="b"></div><div class="b short"></div><div class="b"></div>
+                <div class="label">Home</div>
+              </div>
+              <div class="sm-page">
+                <div class="b"></div><div class="b"></div><div class="b short"></div>
+                <div class="label">Join</div>
+              </div>
+              <div class="sm-page hl">
+                <div class="b short"></div><div class="b"></div><div class="b"></div>
+                <div class="label">Points</div>
+              </div>
+              <div class="sm-page">
+                <div class="b"></div><div class="b short"></div><div class="b"></div>
+                <div class="label">Events</div>
+              </div>
+              <div class="sm-page">
+                <div class="b short"></div><div class="b"></div><div class="b"></div>
+                <div class="label">Gallery</div>
+              </div>
+              <div class="sm-page">
+                <div class="b"></div><div class="b"></div><div class="b short"></div>
+                <div class="label">About</div>
+              </div>
+              <div class="sm-page">
+                <div class="b"></div><div class="b short"></div><div class="b"></div>
+                <div class="label">E-Board</div>
+              </div>
+              <div class="sm-page">
+                <div class="b short"></div><div class="b"></div><div class="b"></div>
+                <div class="label">Alumni</div>
+              </div>
+            </div>
+          </div>
+          <div class="sitemap">
+            <div class="cap">admin view: attendance history</div>
+            <div class="att">
+              <div class="att-row head"><span>Date &amp; Time</span><span>Event</span><span>Points</span></div>
+              <div class="att-row"><div class="b"></div><div class="b"></div><div class="b pts"></div></div>
+              <div class="att-row"><div class="b"></div><div class="b short" style="width:70%"></div><div class="b pts"></div></div>
+              <div class="att-row"><div class="b"></div><div class="b"></div><div class="b pts"></div></div>
+            </div>
+          </div>
+          <div class="case-cta">
+            <a class="btn" href="https://ksunsbe.org" target="_blank" rel="noopener">View the live site</a>
           </div>
         </div>
       </div>
